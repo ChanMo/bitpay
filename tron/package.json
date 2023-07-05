@@ -1,0 +1,17 @@
+{
+  "name": "tron",
+  "version": "1.0.0",
+  "description": "https://cn.developers.tron.network/docs/%E5%85%A5%E9%97%A8_new",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "tronweb": "^5.2.0"
+  }
+}

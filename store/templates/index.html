@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="title">Small Store</h1>
+  <div class="columns">
+    {% for row in object_list %}
+      <div class="column is-3">
+	<div class="box">
+	  <p class="title is-6 mb-3">{{row}}</p>
+	  <p>Price: <span>{{row.price}}</span></p>
+	  <a href="{% url "checkout" row.pk %}" class="button mt-3 is-primary is-small is-outlined">Buy</a>
+	</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

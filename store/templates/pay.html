@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="title">Pay</h1>
+  <div id="qrcode"></div>
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script type="text/javascript">
+     new QRCode(document.getElementById("qrcode"), "TESTING");
+  </script>
+{% endblock %}
