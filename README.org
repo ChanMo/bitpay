@@ -27,6 +27,8 @@ Environment Variable List:
 #+END_SRC
 
 Environment Variable List:
+- TRON_API: The URL of the tron API instance, for example, http://0.0.0.0:3000
+- TRON_USDT: The USDT contract address in TRON. 
 - PAYMENT_RESULT_NOTIFY: The URL for receiving the notification of payment status change.
 
 

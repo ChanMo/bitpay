@@ -136,8 +136,8 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TRON_API = 'http://tron:3000'
-TRON_USDT = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
+TRON_API = environ.get('TRON_API', 'http://0.0.0.0:3000')
+TRON_USDT = environ.get('TRON_USDT', 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t')
 
 PAYMENT_RESULT_NOTIFY = environ.get('PAYMENT_RESULT_NOTIFY', '')
 
