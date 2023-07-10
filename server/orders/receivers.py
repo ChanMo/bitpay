@@ -1,7 +1,10 @@
+import requests
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db.models import Sum
+from django.conf import settings
 from .models import Order, OrderLine
+from .serializers import OrderSerializer
 
 
 @receiver(post_save, sender=Order)
@@ -24,3 +27,18 @@ def check_order_status(sender, instance=None, created=False, **kwargs):
     
     order.status = 'success'
     order.save()
+
+    # send notify
+    if not settings.PAYMENT_RESULT_NOTIFY:
+        return
+    try:
+        r = requests.post(
+            settings.PAYMENT_RESULT_NOTIFY,
+            json = {
+                'order': OrderSerializer(order).data,
+                'event': 'paid'
+            },
+            timeout=300)
+        print(r.json())
+    except Exception as e:
+        print(e)

@@ -24,7 +24,7 @@ class Command(BaseCommand):
             start_at = timezone.make_aware(start_at)
         else:
             start_at = datetime.now()
-        end_at = start_at - datetime.timedelta(minutes=5)
+        end_at = start_at - datetime.timedelta(minutes=1)
 
         accounts = self.get_accounts()
 

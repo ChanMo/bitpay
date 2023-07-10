@@ -1,0 +1,2 @@
+* * * * * /usr/bin/python /app/manage.py check_paying
+* * * * * /usr/bin/python /app/manage.py check_expired

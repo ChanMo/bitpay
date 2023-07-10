@@ -1,3 +1,4 @@
+from decimal import Decimal
 import requests
 from django.db import models
 from django.conf import settings
@@ -20,18 +21,23 @@ class Order(models.Model):
     def __str__(self):
         return str(self.pk)
 
-    def get_pay_data(self):
-        if not self.pay_data:
-            res = self.create_pay_data()
+    def get_pay_data(self, force=False):
+        if not self.pay_data or force:
+            try:
+                res = self.create_pay_data()
+            except Exception as e:
+                print(e)
+                return None
             self.pay_data = res
             self.save()
         return self.pay_data
         
-
     def create_pay_data(self):
-        r = requests.post('http://0.0.0.0:5000/', json={
+        value = int(self.amount * Decimal(1e6))
+        r = requests.post('http://0.0.0.0:8001/orders/', json={
             'user': self.user.username,
             'email': self.user.email,
+            'value': value
         }, timeout=300)
         return r.json()
 

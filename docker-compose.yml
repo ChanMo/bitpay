@@ -1,0 +1,29 @@
+version: '3'
+services:
+  tron:
+    build: ./tron
+    ports:
+      - "3000:3000"
+    environment:
+      TRON_API_KEY: ''
+      NETWORK: Nile
+
+      
+  bitpay:
+    build: ./server
+    volumes:
+      - ./server:/app
+    depends_on:
+      - postgres
+    ports:
+      - "8001:8000"
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      TZ: Asia/Shanghai
+      POSTGRES_PASSWORD: "uEq6Kk4BoPLZpm"
+    ports:
+      - "5432:5432"

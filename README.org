@@ -5,7 +5,7 @@ TRON(USDT)支付服务
 用户创建订单时, 系统会为当前订单分配一个可用的钱包地址 (如果无可用地址, 就创建一个新地址).
 订单创建时自动设置截止时间(10分钟)
 
-系统会监听Pending状态订单的钱包地址的交易记录, 如果有新的入账操作, 则填加订单记录
+系统会监听Pending状态订单的钱包地址的交易记录, 如果有新的入账操作, 则增加订单记录
 当订单记录中的入账总额大于或等于订单金额时, 标记为成功, 并设置钱包为可用
 当订单超时时, 设置钱包为可用
 
@@ -16,7 +16,44 @@ TRON(USDT)支付服务
   $ docker run -p 3000:3000 chanmo/tron-api
 #+END_SRC
 
+Environment Variable List:
+- TRON_API_KEY
+- NETWORK: choose one of Nile, or Mainnet
+
+
 启动BitPay API
 #+BEGIN_SRC
   $ docker run -p 5000:8000 chanmo/bitpay
+#+END_SRC
+
+Environment Variable List:
+- PAYMENT_RESULT_NOTIFY: The URL for receiving the notification of payment status change.
+
+
+** API
+
+*** Create a payment order
+
+#+BEGIN_SRC
+  http POST :8000/orders/ user=demo email=demo@demo.com amount=1000000
+#+END_SRC
+
+
+*** List all orders
+
+#+BEGIN_SRC
+  http :8000/orders/
+#+END_SRC
+
+*** Delete an order
+
+#+BEGIN_SRC
+  http DELETE :8000/orders/<order_number>/
+#+END_SRC
+
+
+*** List all accounts
+
+#+BEGIN_SRC
+  http :8000/accounts/
 #+END_SRC

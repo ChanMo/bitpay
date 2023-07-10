@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1 class="title">Pay</h1>
+  <h1 class="title">PAYING</h1>
+  <div class="block">
+    <p>Expired At: <span>{{pay_data.expired_at}}</span></p>
+    <p>Amount: <span class="is-size-4 has-text-weight-bold">{{object.amount}}</span>USDT</p>
+  </div>
   <div id="qrcode"></div>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   <script type="text/javascript">
-     new QRCode(document.getElementById("qrcode"), "TESTING");
+     new QRCode(document.getElementById("qrcode"), "{{pay_data.account}}");
   </script>
 {% endblock %}

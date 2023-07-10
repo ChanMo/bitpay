@@ -18,7 +18,7 @@ let eventServer = new HttpProvider("https://api.trongrid.io");
 if (process.env.NETWORK === 'Nile') {
   fullNode = new HttpProvider("https://nile.trongrid.io");
   solidityNode = new HttpProvider("https://nile.trongrid.io");
-  eventServer = new HttpProvider("https://nile.trongrid.io");    
+  eventServer = new HttpProvider("https://nile.trongrid.io");
 }
 
 
